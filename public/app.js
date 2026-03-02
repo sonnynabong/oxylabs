@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
       aiOverviewSection.classList.remove('hidden');
     } else {
       aiOverviewSection.classList.add('hidden');
-      aiOverviewContent.innerHTML = '<div class="no-results"><div class="no-results-icon">🤔</div><p>No AI Overview available for this query</p></div>';
+      aiOverviewContent.innerHTML = '<div class="no-results"><div class="no-results-icon">?</div><p>No AI Overview available for this query</p></div>';
       aiOverviewSection.classList.remove('hidden');
     }
 
@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (html === '') {
-      html = '<div class="no-results"><div class="no-results-icon">🤔</div><p>No AI Overview content available</p></div>';
+      html = '<div class="no-results"><div class="no-results-icon">?</div><p>No AI Overview content available</p></div>';
     }
 
     aiOverviewContent.innerHTML = html;
