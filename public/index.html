@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google AI Overview Scraper</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🔍 Google AI Overview Scraper</h1>
+      <p>Powered by Oxylabs API</p>
+    </header>
+
+    <div class="search-section">
+      <div class="input-group">
+        <label for="query">Search Query</label>
+        <input 
+          type="text" 
+          id="query" 
+          placeholder="Enter your search query (e.g., top 10 seo saas companies)"
+          autocomplete="off"
+        >
+      </div>
+
+      <div class="input-group">
+        <label for="country">Country / Geo Location</label>
+        <select id="country">
+          <option value="United States">United States</option>
+          <option value="United Kingdom">United Kingdom</option>
+          <option value="Germany">Germany</option>
+          <option value="France">France</option>
+          <option value="Spain">Spain</option>
+          <option value="Italy">Italy</option>
+          <option value="Netherlands">Netherlands</option>
+          <option value="Australia">Australia</option>
+          <option value="Canada">Canada</option>
+          <option value="Brazil">Brazil</option>
+          <option value="India">India</option>
+          <option value="Japan">Japan</option>
+          <option value="China">China</option>
+          <option value="Singapore">Singapore</option>
+          <option value="South Korea">South Korea</option>
+          <option value="Mexico">Mexico</option>
+          <option value="Russia">Russia</option>
+          <option value="Sweden">Sweden</option>
+          <option value="Switzerland">Switzerland</option>
+          <option value="Turkey">Turkey</option>
+        </select>
+      </div>
+
+      <button id="searchBtn" class="search-btn">
+        <span class="btn-text">Search</span>
+        <span class="spinner hidden"></span>
+      </button>
+    </div>
+
+    <div id="error" class="error hidden"></div>
+
+    <div id="results" class="results hidden">
+      <!-- AI Overview Section -->
+      <div id="aiOverviewSection" class="section hidden">
+        <h2>🤖 AI Overview</h2>
+        <div id="aiOverviewContent" class="ai-overview"></div>
+      </div>
+
+      <!-- Organic Results Section -->
+      <div id="organicSection" class="section hidden">
+        <h2>📄 Organic Results</h2>
+        <div id="organicResults" class="organic-results"></div>
+      </div>
+
+      <!-- Related Searches Section -->
+      <div id="relatedSection" class="section hidden">
+        <h2>🔗 Related Searches</h2>
+        <div id="relatedSearches" class="related-searches"></div>
+      </div>
+
+      <!-- Raw JSON Section -->
+      <div class="section">
+        <h2>📋 Raw Response</h2>
+        <details>
+          <summary>Click to view raw JSON response</summary>
+          <pre id="rawJson" class="raw-json"></pre>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
