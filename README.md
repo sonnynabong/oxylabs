@@ -2,8 +2,6 @@
 
 A simple Node.js application that uses the Oxylabs Web Scraper API to fetch Google search results including AI Overviews.
 
-![Google AI Overview Scraper](screenshot.png)
-
 ## Features
 
 - **Search Google** and get AI-generated Overviews
