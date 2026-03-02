@@ -70,7 +70,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Display raw JSON
     rawJson.textContent = JSON.stringify(data, null, 2);
 
-    const results = data.results || {};
+    // Extract results from the response structure
+    // Oxylabs returns: data.results[0].content.results
+    const resultsArray = data.results || [];
+    const firstResult = resultsArray[0] || {};
+    const content = firstResult.content || {};
+    const results = content.results || {};
+
+    console.log('Extracted results:', results);
 
     // Display AI Overview
     if (results.ai_overviews && results.ai_overviews.length > 0) {
@@ -78,6 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
       aiOverviewSection.classList.remove('hidden');
     } else {
       aiOverviewSection.classList.add('hidden');
+      aiOverviewContent.innerHTML = '<div class="no-results"><div class="no-results-icon">🤔</div><p>No AI Overview available for this query</p></div>';
+      aiOverviewSection.classList.remove('hidden');
     }
 
     // Display Organic Results
@@ -110,6 +119,24 @@ document.addEventListener('DOMContentLoaded', () => {
           answer.text.forEach(text => {
             html += `<div class="ai-answer-text">${escapeHtml(text)}</div>`;
           });
+        }
+        
+        html += '</div>';
+      });
+    }
+
+    // Display bullet lists
+    if (aiOverview.bullet_list && aiOverview.bullet_list.length > 0) {
+      aiOverview.bullet_list.forEach((list, index) => {
+        html += '<div class="ai-answer">';
+        html += `<div class="ai-answer-header">${escapeHtml(list.list_title || `Key Points ${index + 1}`)}</div>`;
+        
+        if (list.points && list.points.length > 0) {
+          html += '<ul class="ai-bullet-list">';
+          list.points.forEach(point => {
+            html += `<li>${escapeHtml(point)}</li>`;
+          });
+          html += '</ul>';
         }
         
         html += '</div>';
@@ -179,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    relatedSearches.innerHTML = html;
+    relatedSearches.innerHTML = html || '<p class="no-results">No related searches found</p>';
 
     // Add click handlers for related searches
     relatedSearches.querySelectorAll('.related-tag').forEach(tag => {
@@ -192,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function setLoading(loading) {
     searchBtn.disabled = loading;
-    btnText.textContent = loading ? 'Searching...' : 'Search';
+    btnText.textContent = loading ? 'Fetching results (this may take 10-30s)...' : 'Search';
     spinner.classList.toggle('hidden', !loading);
   }
 

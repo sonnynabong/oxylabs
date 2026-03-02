@@ -180,6 +180,16 @@ header p {
   font-size: 1rem;
 }
 
+.ai-bullet-list {
+  margin: 12px 0 0 20px;
+  color: #1e293b;
+  line-height: 1.7;
+}
+
+.ai-bullet-list li {
+  margin-bottom: 8px;
+}
+
 .ai-sources {
   margin-top: 24px;
   padding-top: 24px;
